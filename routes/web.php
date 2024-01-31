@@ -25,7 +25,12 @@ Route::get('/adventures', function () {
 });
 
 Route::get('/adventures/{id}', function ($id) {
-    return view('adventure', ['adventure' => Adventure::find($id)]);
+    $adventure = Adventure::find($id);
+    if ($adventure) {
+        return view('adventure', ['adventure' => $adventure]);
+    } else {
+        abort('404');
+    }
 });
 
 Route::get('/stats', function () {
