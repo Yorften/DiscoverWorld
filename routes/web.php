@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Adventure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,20 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('adventures', ['adventures' => Adventure::latest()->take(6)->get()]);
 });
 
-Route::get('/adventures', function () {
-    $data = [];
-    return view('adventures', $data);
-});
-
-Route::get('/adventures/{$id}', function ($id) {
-    $data = [];
-    return view('adventure', $data);
+Route::get('/adventures/{id}', function ($id) {
+    return view('adventure', ['adventure' => Adventure::find($id)]);
 });
 
 Route::get('/stats', function () {
-    $data = [];
-    return view('stats', $data);
+    return view('stats');
+});
+
+Route::get('/about', function () {
+    return view('about');
 });
