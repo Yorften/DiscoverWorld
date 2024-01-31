@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Adventure;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('adventures', ['adventures' => Adventure::latest()->take(6)->get()]);
+    return view('home', ['adventures' => Adventure::with('images')->latest()->take(6)->get()]);
+});
+
+Route::get('/adventures', function () {
+    return view('adventures', ['adventures' => Adventure::with('images', 'destination')->get()]);
 });
 
 Route::get('/adventures/{id}', function ($id) {
