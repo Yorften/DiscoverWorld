@@ -57,21 +57,21 @@ class AdventureController extends Controller
                 ]);
             } else {
                 $newDestination = Destination::create(['name' => $formFields['newDestination']]);
-                Adventure::create([
+                $insertedAdventure = Adventure::create([
                     'title' => $formFields['title'],
                     'desc' => $formFields['desc'],
                     'destination_id' => $newDestination->id,
                 ]);
             }
         } else {
-            Adventure::create([
+            $insertedAdventure = Adventure::create([
                 'title' => $formFields['title'],
                 'desc' => $formFields['desc'],
                 'destination_id' => $formFields['destination'],
             ]);
         }
 
-        return redirect('/');
+        return redirect('/adventures/' . $insertedAdventure->id);
     }
 
     public function stats()
