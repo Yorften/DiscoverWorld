@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdventureController;
 use App\Models\Adventure;
 use App\Models\Image;
 use Illuminate\Http\Request;
@@ -16,26 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home', ['adventures' => Adventure::with('images')->latest()->take(6)->get()]);
-});
+Route::get('/', [AdventureController::class, 'popular']);
 
-Route::get('/adventures', function () {
-    return view('adventures', ['adventures' => Adventure::with('images', 'destination')->get()]);
-});
+Route::get('/adventures', [AdventureController::class, 'index']);
 
-Route::get('/adventures/{id}', function ($id) {
-    $adventure = Adventure::find($id);
-    if ($adventure) {
-        return view('adventure', ['adventure' => $adventure]);
-    } else {
-        abort('404');
-    }
-});
+Route::get('/adventures/{adventure}', [AdventureController::class, 'show']);
 
-Route::get('/stats', function () {
-    return view('stats');
-});
+Route::get('/stats', [AdventureController::class, 'stats']);
 
 Route::get('/about', function () {
     return view('about');
