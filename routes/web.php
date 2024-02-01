@@ -21,6 +21,8 @@ Route::get('/adventures', [AdventureController::class, 'index']);
 
 Route::get('/adventures/create', [AdventureController::class, 'create']);
 
+Route::post('/adventures', [AdventureController::class, 'store']);
+
 Route::get('/adventures/{adventure}', [AdventureController::class, 'show']);
 
 Route::get('/stats', [AdventureController::class, 'stats']);
