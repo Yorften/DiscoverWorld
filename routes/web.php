@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdventureController;
-use App\Models\Adventure;
-use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AdventureController::class, 'popular']);
 
 Route::get('/adventures', [AdventureController::class, 'index']);
+
+Route::get('/adventures/create', [AdventureController::class, 'create']);
 
 Route::get('/adventures/{adventure}', [AdventureController::class, 'show']);
 
