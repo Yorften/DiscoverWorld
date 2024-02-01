@@ -33,7 +33,7 @@
 
 <body>
     <div class="max-w-screen-xl mx-auto">
-        <header class="flex items-center justify-between py-2 border-b">
+        <header class="flex items-center justify-between py-2 border-b shadow-md">
             <a href="/" class="px-2 ml-2 lg:px-0 uppercase font-bold text-purple-800 hidden md:block">
                 <img src="{{ asset('assets/images/logo-no-background-black.png') }}" alt="" class="w-60">
             </a>
