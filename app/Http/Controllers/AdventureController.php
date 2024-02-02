@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Adventure;
 use App\Models\Destination;
-use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class AdventureController extends Controller
 {
@@ -87,6 +88,11 @@ class AdventureController extends Controller
 
     public function stats()
     {
-        return view('adventures.stats', ['stats' => Adventure::all()->count()]);
+        $totalAdventures = Adventure::count();
+        $popularDestination = Adventure::select('destination_id', DB::raw('count(*) as adventure_count'))
+            ->groupBy('destination_id')
+            ->orderByDesc('adventure_count')
+            ->first();
+        return view('adventures.stats', compact('totalAdventures', 'popularDestination'));
     }
 }
