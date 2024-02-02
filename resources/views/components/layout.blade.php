@@ -27,6 +27,11 @@
         .checked {
             color: rgb(37, 99, 235);
         }
+
+        .stroke{
+            -webkit-text-stroke-width: 0.6px;
+            -webkit-text-stroke-color: black;
+        }
     </style>
     <title>DiscoverWorld</title>
 </head>

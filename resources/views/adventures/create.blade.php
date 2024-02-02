@@ -14,9 +14,7 @@
                     <span class="mx-4 h-auto text-gray-400 font-medium">/</span>
                 </li>
                 <li class="inline-flex items-center">
-                    <a href="/adventures" class="text-gray-600 hover:text-blue-500">
-                        Adventures
-                    </a>
+                    <a href="/adventures" class="text-gray-600 hover:text-blue-500">Adventures</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +36,12 @@
             </div>
             <div class="w-full md:w-1/4 h-full flex flex-col gap-20 md:justify-between">
                 <div class="flex flex-col gap-4">
-                    <input type="file" name="images" class="border border-gray-400 rounded-md px-2 py-1">
+                    <div class="flex flex-col">
+                        <input type="file" multiple name="image[]" class="border border-gray-400 rounded-md px-2 py-1">
+                        @error('image')
+                            <div id="destinationErr" class="text-red-600 text-sm font-medium">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="flex flex-col">
                         <x-destination-select class="w-full">
                             @foreach ($destinations as $destination)
@@ -67,6 +70,6 @@
                 $('#destinations').select2();
             });
         </script>
-        <script src="{{ asset('assets/js/create_destination.js') }}"></script>
+         <script src="{{ asset('assets/js/create_destination.js') }}"></script>
     @endpush
 </x-layout>

@@ -69,7 +69,7 @@
             <p class="w-full flex flex-col items-center justify-center font-bold text-2xl min-h-[30vh] h-full">No adventures
                 found</p>
         @endunless
-
+        <div class="mt-6 py-4">{{ $adventures->links() }}</div>
     </div>
 
 
